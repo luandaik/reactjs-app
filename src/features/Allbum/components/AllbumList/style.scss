@@ -1,0 +1,10 @@
+.allbumList {
+    display: flex;
+    flex-flow: row;
+    padding: 0;
+    margin: 0 -20px;
+    list-style-type: none;
+    & > li {
+        padding: 0 20px;
+    }
+}

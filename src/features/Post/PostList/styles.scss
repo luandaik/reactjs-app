@@ -1,0 +1,15 @@
+ul.post-list{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+ul.post-list>li{
+    cursor: pointer;
+}
+ul.post-list>li>a{
+    text-decoration: none;
+    color: brown;
+}
+ul.post-list>li>a:hover{
+    color: red;
+}
