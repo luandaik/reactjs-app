@@ -12,6 +12,7 @@ function PostFilterForm(props) {
     const [searchTerm, setSearchTerm] = useState('');
     const typingTimeOutRef = useRef(null);
     function handleSeachTermChange(e){
+        e.preventDefault();
         const value= e.target.value;
         setSearchTerm(value);
         if(!onSubmit) return;
