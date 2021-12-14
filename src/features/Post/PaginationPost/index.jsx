@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import './styles.scss';
 PaginationPost.propTypes = {
     pagination: PropTypes.object.isRequired,
     onPageChange: PropTypes.func,
@@ -11,18 +11,18 @@ PaginationPost.defaultProps={
 
 function PaginationPost(props) {
     const {pagination,onPageChange} = props;
-    const {current_page,last_page} =pagination;
+    const {next_page_url,prev_page_url} =pagination;
     function handlePageChange(newPage){
         if(onPageChange){
-            onPageChange();
+            onPageChange(newPage);
         }  
     }
     return (
-        <div>
-            <button disabled={current_page<=1} onClick={(()=>handlePageChange(current_page-1))}>
+        <div className='pagination-btn-group'>
+            <button disabled={prev_page_url===null} onClick={(()=>handlePageChange(prev_page_url))}>
                 Prev
             </button>
-            <button disabled={current_page>=last_page} onClick={(()=>handlePageChange(current_page+1))}>
+            <button disabled={next_page_url===null} onClick={(()=>handlePageChange(next_page_url))}>
                 Next
             </button>
 

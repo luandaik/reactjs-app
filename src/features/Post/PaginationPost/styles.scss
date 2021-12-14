@@ -1,0 +1,13 @@
+.pagination-btn-group > button {
+    color: black;
+    float: left;
+    padding: 8px 35px;
+    text-decoration: none;
+    margin-left: 5px;
+    cursor: pointer;
+}
+.pagination-btn-group > button[disabled] {
+    background-color: #859287;
+    color: white;
+    cursor:unset;
+  }
