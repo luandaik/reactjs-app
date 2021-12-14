@@ -1,10 +1,9 @@
-import Clock from "./features/Clock";
-import Post from "./features/Post";
+import MagicColor from "./features/MagicColor";
+
 function App() {
   return (
     <div className="App">
-     <Post />
-     <Clock />
+      <MagicColor />
     </div>
   );
 }
