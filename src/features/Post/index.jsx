@@ -17,7 +17,7 @@ function Post(props) {
                 const { data } = responseJSON;
                 setPostList(data);
                 setFullPost(responseJSON);
-                console.log(data);
+                // console.log(data);
             } catch (error) {
                 console.log(error);
             }

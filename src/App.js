@@ -1,4 +1,4 @@
-import { NavLink, Route, Switch } from "react-router-dom";
+import { NavLink, Redirect, Route, Switch } from "react-router-dom";
 import AllbumFeature from "./features/Allbum";
 import Clock from "./features/Clock";
 import Counter from "./features/Counter";
@@ -13,7 +13,8 @@ function App() {
       <p> <NavLink to='posts' >Post</NavLink></p>
       <p> <NavLink to='todo' activeClassName="active-menu" >Todo</NavLink></p>
       <Switch>
-        <Route path="/posts" component={Post} />
+        <Redirect from="/home" to='/'  />
+        <Route path="/posts" component={Post} exact/>
         <Route path="/todo" component={TodoFeature} />
         <Route path="/magiccolor" component={MagicColor} />
         <Route path="/counter" component={Counter} />
