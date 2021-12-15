@@ -8,7 +8,7 @@ function Post(props) {
     const [fullPost,setFullPost]  = useState([]);
     const [filters,setFilters] = useState('https://test.restapi-vs.top/api/posts?page=1')
     useEffect(() => {
-        async function fetchPostList() {
+       async function fetchPostList() {
             try {
                 const url = filters;
                 const response = await fetch(url);
@@ -17,7 +17,7 @@ function Post(props) {
                 const { data } = responseJSON;
                 setPostList(data);
                 setFullPost(responseJSON);
-
+                console.log(data);
             } catch (error) {
                 console.log(error);
             }
