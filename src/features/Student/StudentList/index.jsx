@@ -14,16 +14,6 @@ StudenList.propTypes = {
 StudenList.defaultProps = {
   studentList: [],
 };
-const useStyles = makeStyles({
-  table: {
-    minWidth: 650,
-  },
-});
-
-function createData(id, name, age, adress) {
-  return { id, name, age, adress };
-}
-
 function StudenList({ studentList }) {
     const useStyles = makeStyles({
         table: {
