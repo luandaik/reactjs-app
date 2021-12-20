@@ -1,6 +1,6 @@
 import React from 'react';
 import useClock from '../../hooks/useClock';
-
+import './styles.scss';
 
 
 function Clock() {

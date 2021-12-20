@@ -14,7 +14,7 @@ function PostList(props) {
     return (
         <ul className="post-list">
             {posts.map(post=>(
-                <li key={post.id}><a href="">{post.title}</a></li>
+                <li key={post.id}><a href="https://google.com">{post.title}</a></li>
             ))}
         </ul>
     );
