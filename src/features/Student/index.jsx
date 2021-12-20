@@ -2,28 +2,28 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import StudenList from './StudentList';
 
-index.propTypes = {
+Student.propTypes = {
     
 };
 
-function index(props) {
+function Student(props) {
     const initStudentList = [
         {
           id: 1,
           name: 'Nguyễn Thị B',
-          age: 'new',
+          age: '20',
           address: 'Hà Nội',
         },
         {
           id: 2,
           name: 'Nguyễn Thị B',
-          age: 'new',
+          age: '20',
           address: 'Hà Nội',
         },
         {
           id: 3,
           name: 'Nguyễn Thị B',
-          age: 'new',
+          age: '20',
           address: 'Hà Nội',
         },
         
@@ -35,4 +35,4 @@ function index(props) {
     );
 }
 
-export default index;
+export default Student;

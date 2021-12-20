@@ -57,6 +57,9 @@ export default function Header() {
           <NavLink to="todo" className={classes.link}>
             <Button color="inherit">Todo</Button>
           </NavLink>
+          <NavLink to="student" className={classes.link}>
+            <Button color="inherit">Student</Button>
+          </NavLink>
           <NavLink to="posts" className={classes.link}>
             <Button color="inherit">Post</Button>
           </NavLink>
