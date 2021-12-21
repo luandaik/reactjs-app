@@ -1,23 +1,23 @@
-import { Divider, IconButton, InputBase, makeStyles, Paper } from '@material-ui/core';
-import SearchIcon from '@material-ui/icons/Search';
-import PropTypes from 'prop-types';
-import React, { useRef, useState } from 'react';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { IconButton, InputBase, makeStyles, Paper } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import InputField from '../../../components/form-controls/InputField';
+import SearchIcon from '@material-ui/icons/Search';
+import PropTypes from 'prop-types';
+import React, { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import StudentAdd from '../StuduntAdd';
 StudentFilterForm.propTypes = {
   onSubmit: PropTypes.func,
+  formSubmit: PropTypes.func,
 };
 StudentFilterForm.defaultProps = {
   onSubmit: null,
+  formSubmit: null,
 };
 
 const useStyles = makeStyles((theme) => ({
@@ -43,6 +43,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 function StudentFilterForm(props) {
+  const { formSubmit } = props;
+  const handleStudentAddFormSubmit = (values) => {
+    if (!formSubmit) return;
+    formSubmit(values);
+  };
   const [open, setOpen] = useState(false);
   const handleClickOpen = () => {
     setOpen(true);
@@ -71,21 +76,7 @@ function StudentFilterForm(props) {
       onSubmit(formValue);
     }, 300);
   }
-  const schema = yup
-    .object({
-      title: yup.string().required('Mời nhập nội dung công việc').min(5, 'Thấp nhất 5 ký tự'),
-    })
-    .required();
-  const form = useForm({
-    defaultValues: {
-      title: '',
-    },
-    resolver: yupResolver(schema),
-  });
 
-  const handleSubmit = (values) => {
-     console.log(values);
-  };
   return (
     <Paper component="form" className={classes.root}>
       <InputBase
@@ -105,15 +96,15 @@ function StudentFilterForm(props) {
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">Thêm mới sinh viên</DialogTitle>
         <DialogContent>
-          <form onSubmit={form.handleSubmit(handleSubmit)}>
-          <TextField className={classes.input} autoFocus margin="dense" name="name" id="name" label="Tên sinh viên" form={form} fullWidth />
-          <TextField className={classes.input} autoFocus margin="dense" name="age" id="age" label="Tuổi"  form={form} fullWidth />
-          <TextField className={classes.input} autoFocus margin="dense" name="address" id="name" label="Địa chỉ"  form={form} fullWidth />
-          <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
-            Thêm sinh viên
-          </Button>
-          </form>
-          
+          {/* <form onSubmit={form.handleSubmit(handleSubmit)}>
+            <InputField autoFocus name="name" id="name" label="Tên sinh viên" form={form} />
+            <InputField name="age" id="age" label="Tuổi" form={form} />
+            <InputField name="address" id="name" label="Địa chỉ" form={form} />
+            <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
+              Thêm sinh viên
+            </Button>
+          </form> */}
+          <StudentAdd studenFormSubmit={handleStudentAddFormSubmit} />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">

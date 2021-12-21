@@ -31,7 +31,6 @@ function Student(props) {
   const math = useRouteMatch();
   const [filters, setFilters] = useState('');
   function handleFiltersChange(newFilter) {
-    
     const queryParam = { name: newFilter.searchTerm };
     history.push({
       patchname: math.path,
@@ -39,16 +38,25 @@ function Student(props) {
     });
     setFilters(newFilter.searchTerm);
   }
-  const renderStudentList = initStudentList.filter((student) =>{
-    console.log(filters);
-      if(filters==='') return student;
-      return student.name===filters;
+  const [studentList, setStudentList] = useState(initStudentList);
+  const renderStudentList = studentList.filter((student) => {
+    //console.log(filters);
+    if (filters === '') return student;
+    return student.name === filters;
   });
-
+  function handleStudentFormSubmit(formValues) {
+    const newStudentList = [...studentList];
+    const newStudent = {
+      id: studentList.length + 5,
+      ...formValues,
+    };
+    newStudentList.push(newStudent);
+    setStudentList(newStudentList);
+  }
   return (
     <div>
-       <h1 style={{textAlign:'center'}}>Quản Lý Sinh Viên</h1>
-      <StudentFilterForm onSubmit={handleFiltersChange} />
+      <h1 style={{ textAlign: 'center' }}>Quản Lý Sinh Viên</h1>
+      <StudentFilterForm onSubmit={handleFiltersChange} formSubmit={handleStudentFormSubmit} />
       <StudenList studentList={renderStudentList} />
     </div>
   );
