@@ -74,15 +74,15 @@ function StudentFilterForm(props) {
         searchTerm: value,
       };
       onSubmit(formValue);
-    }, 300);
+    }, 800);
   }
 
   return (
     <Paper component="form" className={classes.root}>
       <InputBase
         className={classes.input}
-        placeholder="Tìm tên sinh viên"
-        inputProps={{ 'aria-label': 'Tìm tên sinh viên' }}
+        placeholder="Tìm theo tên sinh viên, tuổi, địa chỉ"
+        inputProps={{ 'aria-label': 'Tìm tên sinh viên, tuổi, địa chỉ' }}
         value={searchTerm}
         onChange={handleSeachTermChange}
       />

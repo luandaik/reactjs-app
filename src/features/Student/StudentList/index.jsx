@@ -8,6 +8,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import { Button } from '@material-ui/core';
 StudenList.propTypes = {
   studentList: PropTypes.array,
 };
@@ -18,8 +19,10 @@ function StudenList({ studentList }) {
   const useStyles = makeStyles({
     table: {
       minWidth: 650,
-      
     },
+    btn: {
+      margin: 2,
+    }
   });
   const rows = studentList;
   const classes = useStyles();
@@ -33,6 +36,7 @@ function StudenList({ studentList }) {
               <TableCell align="right">Name</TableCell>
               <TableCell align="right">Age</TableCell>
               <TableCell align="right">Address</TableCell>
+              <TableCell align="right"></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -44,6 +48,14 @@ function StudenList({ studentList }) {
                 <TableCell align="right">{row.name}</TableCell>
                 <TableCell align="right">{row.age}</TableCell>
                 <TableCell align="right">{row.address}</TableCell>
+                <TableCell align="right">
+                  <Button variant="contained" className={classes.btn} color="primary">
+                    Sửa
+                  </Button>
+                  <Button variant="contained" className={classes.btn} color="secondary">
+                    Xóa
+                  </Button>
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>

@@ -42,7 +42,7 @@ function Student(props) {
   const renderStudentList = studentList.filter((student) => {
     //console.log(filters);
     if (filters === '') return student;
-    return student.name === filters;
+    return student.name === filters || student.age===filters || student.address===filters ;
   });
   function handleStudentFormSubmit(formValues) {
     const newStudentList = [...studentList];
