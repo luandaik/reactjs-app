@@ -1,0 +1,15 @@
+.search{
+    border: 1px solid #333;
+    border-radius: 2px;
+    position: absolute;
+    top: -100px;
+    left: 10px;
+}
+
+.search> input{
+    width: 100%;
+    border: none;
+}
+.search> input:focus{
+    border: none;
+}

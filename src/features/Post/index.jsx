@@ -18,7 +18,7 @@ function Post(props) {
         if (params.title) return `https://test.restapi-vs.top/api/posts?page=1&title=${params.title}`;
         return 'https://test.restapi-vs.top/api/posts?page=1';
     })
-
+ 
 
     useEffect(() => {
         async function fetchPostList() {
