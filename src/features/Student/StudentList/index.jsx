@@ -1,5 +1,5 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@material-ui/core';
+import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -7,31 +7,47 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
-import { Button } from '@material-ui/core';
-import { VerticalAlignTopTwoTone } from '@material-ui/icons';
+import PropTypes from 'prop-types';
+import React, { useState } from 'react';
+import StudentEditForm from '../StudentEditForm';
 StudenList.propTypes = {
   studentList: PropTypes.array,
   onDeleteBtn: PropTypes.func,
+  onEditBTn: PropTypes.func,
 };
 StudenList.defaultProps = {
   studentList: [],
   onDeleteBtn: null,
+  onEditBTn: null,
 };
-function StudenList({onDeleteBtn, studentList }) {
+function StudenList({ onDeleteBtn, studentList ,onEditBTn }) {
   const useStyles = makeStyles({
     table: {
       minWidth: 650,
     },
     btn: {
       margin: 2,
-    }
+    },
   });
   const rows = studentList;
   const classes = useStyles();
-  function handleDeteleButton(value){
-     if(!onDeleteBtn) return;
-     onDeleteBtn(value);
+  const [studentInfo,setStudentInfo] =useState({});
+  function handleDeteleButton(value) {
+    if (!onDeleteBtn) return;
+    onDeleteBtn(value);
+  }
+  const [open, setOpen] = useState(false);
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const handleInfoStudent = (values) =>{
+    if(!onEditBTn) return;
+    onEditBTn(values);
+    setOpen(false);
   }
   return (
     <div>
@@ -40,14 +56,14 @@ function StudenList({onDeleteBtn, studentList }) {
           <TableHead>
             <TableRow>
               <TableCell>ID</TableCell>
-              <TableCell align="right">Name</TableCell>
-              <TableCell align="right">Age</TableCell>
-              <TableCell align="right">Address</TableCell>
+              <TableCell align="right">Tên</TableCell>
+              <TableCell align="right">Tuổi</TableCell>
+              <TableCell align="right">Địa chỉ</TableCell>
               <TableCell align="right"></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => (
+            {rows.map((row,idx) => (
               <TableRow key={row.id}>
                 <TableCell component="th" scope="row">
                   {row.id}
@@ -56,10 +72,22 @@ function StudenList({onDeleteBtn, studentList }) {
                 <TableCell align="right">{row.age}</TableCell>
                 <TableCell align="right">{row.address}</TableCell>
                 <TableCell align="right">
-                  <Button variant="contained"  className={classes.btn} color="primary">
+                  <Button variant="contained" className={classes.btn} color="primary" onClick={()=>{
+                    handleClickOpen();
+                    console.log(idx);
+                    setStudentInfo({info:row,index:idx});
+                  }}>
                     Sửa
                   </Button>
-                  <Button variant="contained"  onClick={()=>{handleDeteleButton(row.id)}} className={classes.btn} color="secondary">
+
+                  <Button
+                    variant="contained"
+                    onClick={() => {
+                      handleDeteleButton(row.id);
+                    }}
+                    className={classes.btn}
+                    color="secondary"
+                  >
                     Xóa
                   </Button>
                 </TableCell>
@@ -68,6 +96,20 @@ function StudenList({onDeleteBtn, studentList }) {
           </TableBody>
         </Table>
       </TableContainer>
+      {/* -------------DiagLog------------------ */}
+      <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+        <DialogTitle id="form-dialog-title">Sửa thông tin sinh viên</DialogTitle>
+        <DialogContent>
+          <StudentEditForm infoStudent={studentInfo} editInfoSudent={handleInfoStudent}  />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary">
+            Thoát
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      {/* -------------End DiagLog------------------------- */}
     </div>
   );
 }

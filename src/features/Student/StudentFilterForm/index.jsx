@@ -1,4 +1,3 @@
-import { yupResolver } from '@hookform/resolvers/yup';
 import { IconButton, InputBase, makeStyles, Paper } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -8,8 +7,6 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import SearchIcon from '@material-ui/icons/Search';
 import PropTypes from 'prop-types';
 import React, { useRef, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import * as yup from 'yup';
 import StudentAdd from '../StuduntAdd';
 StudentFilterForm.propTypes = {
   onSubmit: PropTypes.func,
@@ -47,6 +44,7 @@ function StudentFilterForm(props) {
   const handleStudentAddFormSubmit = (values) => {
     if (!formSubmit) return;
     formSubmit(values);
+    setOpen(false);
   };
   const [open, setOpen] = useState(false);
   const handleClickOpen = () => {
@@ -81,7 +79,7 @@ function StudentFilterForm(props) {
     <Paper component="form" className={classes.root}>
       <InputBase
         className={classes.input}
-        placeholder="Tìm theo tên sinh viên, tuổi, địa chỉ"
+        placeholder="Tìm theo tên sinh viên hoặc tuổi hoặc địa chỉ"
         inputProps={{ 'aria-label': 'Tìm tên sinh viên, tuổi, địa chỉ' }}
         value={searchTerm}
         onChange={handleSeachTermChange}

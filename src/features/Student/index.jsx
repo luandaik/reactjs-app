@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import StudenList from './StudentList';
-import { useHistory, useLocation, useRouteMatch } from 'react-router-dom/cjs/react-router-dom.min';
 import queryString from 'query-string';
+import React, { useState } from 'react';
+import { useHistory, useRouteMatch } from 'react-router-dom/cjs/react-router-dom.min';
 import StudentFilterForm from './StudentFilterForm';
+import StudenList from './StudentList';
 Student.propTypes = {};
 
 function Student(props) {
@@ -11,7 +10,7 @@ function Student(props) {
     {
       id: 1,
       name: 'Nguyễn Thị B',
-      age: '20',
+      age: '19',
       address: 'Hà Nội',
     },
     {
@@ -23,7 +22,7 @@ function Student(props) {
     {
       id: 3,
       name: 'Hoàng Văn A',
-      age: '20',
+      age: '21',
       address: 'Hà Nội',
     },
   ];
@@ -42,7 +41,7 @@ function Student(props) {
   const renderStudentList = studentList.filter((student) => {
     //console.log(filters);
     if (filters === '') return student;
-    return student.name === filters || student.age===filters || student.address===filters ;
+    return student.name === filters || student.age === filters || student.address === filters;
   });
   function handleStudentFormSubmit(formValues) {
     const newStudentList = [...studentList];
@@ -53,17 +52,32 @@ function Student(props) {
     newStudentList.push(newStudent);
     setStudentList(newStudentList);
   }
-  function handleBtnClickButton(value){
+  function handleBtnClickDeleteButton(value) {
     const newStudentList = studentList.filter((student) => {
       if (value !== student.id) return student;
     });
     setStudentList(newStudentList);
   }
+  function handleBtnClickEditButton(values) {
+    console.log(values.name);
+    const newStudentList = [...studentList];
+    newStudentList[values.id] = {
+      ...newStudentList[values.id],
+      name: values.name,
+      age: values.age,
+      address: values.address,
+    };
+    setStudentList(newStudentList);
+  }
   return (
     <div>
-      <h1 style={{ textAlign: 'center' }}>Quản Lý Sinh Viên</h1>
+      <h1 style={{ textAlign: 'center', color: '#494dcf' }}>Quản Lý Sinh Viên</h1>
       <StudentFilterForm onSubmit={handleFiltersChange} formSubmit={handleStudentFormSubmit} />
-      <StudenList studentList={renderStudentList} onDeleteBtn={handleBtnClickButton} />
+      <StudenList
+        studentList={renderStudentList}
+        onDeleteBtn={handleBtnClickDeleteButton}
+        onEditBTn={handleBtnClickEditButton}
+      />
     </div>
   );
 }
