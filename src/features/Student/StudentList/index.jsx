@@ -9,13 +9,16 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { Button } from '@material-ui/core';
+import { VerticalAlignTopTwoTone } from '@material-ui/icons';
 StudenList.propTypes = {
   studentList: PropTypes.array,
+  onDeleteBtn: PropTypes.func,
 };
 StudenList.defaultProps = {
   studentList: [],
+  onDeleteBtn: null,
 };
-function StudenList({ studentList }) {
+function StudenList({onDeleteBtn, studentList }) {
   const useStyles = makeStyles({
     table: {
       minWidth: 650,
@@ -26,6 +29,10 @@ function StudenList({ studentList }) {
   });
   const rows = studentList;
   const classes = useStyles();
+  function handleDeteleButton(value){
+     if(!onDeleteBtn) return;
+     onDeleteBtn(value);
+  }
   return (
     <div>
       <TableContainer component={Paper}>
@@ -49,10 +56,10 @@ function StudenList({ studentList }) {
                 <TableCell align="right">{row.age}</TableCell>
                 <TableCell align="right">{row.address}</TableCell>
                 <TableCell align="right">
-                  <Button variant="contained" className={classes.btn} color="primary">
+                  <Button variant="contained"  className={classes.btn} color="primary">
                     Sửa
                   </Button>
-                  <Button variant="contained" className={classes.btn} color="secondary">
+                  <Button variant="contained"  onClick={()=>{handleDeteleButton(row.id)}} className={classes.btn} color="secondary">
                     Xóa
                   </Button>
                 </TableCell>

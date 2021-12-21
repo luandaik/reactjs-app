@@ -53,11 +53,17 @@ function Student(props) {
     newStudentList.push(newStudent);
     setStudentList(newStudentList);
   }
+  function handleBtnClickButton(value){
+    const newStudentList = studentList.filter((student) => {
+      if (value !== student.id) return student;
+    });
+    setStudentList(newStudentList);
+  }
   return (
     <div>
       <h1 style={{ textAlign: 'center' }}>Quản Lý Sinh Viên</h1>
       <StudentFilterForm onSubmit={handleFiltersChange} formSubmit={handleStudentFormSubmit} />
-      <StudenList studentList={renderStudentList} />
+      <StudenList studentList={renderStudentList} onDeleteBtn={handleBtnClickButton} />
     </div>
   );
 }
