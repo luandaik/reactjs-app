@@ -41,7 +41,7 @@ function Calculator(props) {
     try {
       const resultCal = eval(values.calculator);
       setResult(resultCal);
-    } catch (err) {
+    } catch {
       setResult('Phép tính sai');
     }
   };

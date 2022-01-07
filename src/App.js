@@ -1,13 +1,16 @@
 import { Redirect, Route, Switch } from "react-router-dom";
 import Header from "./components/Header";
+import AlertCodeGym from "./features/AlertCodeGym";
 import AllbumFeature from "./features/Allbum";
 import Calculator from "./features/Calculator";
 import Clock from "./features/Clock";
 import Counter from "./features/Counter";
+import Counter2Feature from "./features/Counter2";
 import MagicColor from "./features/MagicColor";
 import Post from "./features/Post";
 import Student from "./features/Student";
 import TodoFeature from "./features/Todo";
+import TypeInput from "./features/TypeInput";
 
 function App() {
   return (
@@ -19,6 +22,7 @@ function App() {
         <Redirect from="/home" to='/'  />
         {/* <Route path="/test" component={TestCodeGym} exact/> */}
         <Route path="/posts" component={Post} exact/>
+        <Route path="/typeinput" component={TypeInput} exact/>
         <Route path="/student" component={Student} exact/>
         <Route path="/todo" component={TodoFeature} />
         <Route path="/magiccolor" component={MagicColor} />
@@ -26,6 +30,9 @@ function App() {
         <Route path="/clock" component={Clock} />
         <Route path="/allbum" component={AllbumFeature} />
         <Route path="/calculator" component={Calculator} />
+        <Route path="/counter2" component={Counter2Feature} />
+        <Route path="/alert" component={AlertCodeGym} />
+        <Route path="/alert" component={AlertCodeGym} />
       </Switch>
 
     </div>
