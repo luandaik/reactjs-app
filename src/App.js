@@ -8,6 +8,7 @@ import ColorBox from "./features/ClolorBox";
 import Counter from "./features/Counter";
 import Counter2Feature from "./features/Counter2";
 import HiddenInput from "./features/HiddenInput";
+import Login from "./features/Login";
 // import Login from "./features/Login";
 import MagicColor from "./features/MagicColor";
 import Post from "./features/Post";
@@ -39,7 +40,7 @@ function App() {
         <Route path="/colorbox" component={MagicColor} />
         <Route path="/hidden" component={HiddenInput} />
         <Route path="/typeinput" component={TypeInput} />
-        {/* <Route path="/login" component={Login} /> */}
+        <Route path="/login" component={Login} />
       </Switch>
 
     </div>
