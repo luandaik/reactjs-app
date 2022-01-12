@@ -4,10 +4,11 @@ import './styles.scss';
 
 
 function Clock() {
-    const { timeString } = useClock();
+    const { timeString } = useClock(); // 1 cai su dung chung 1 bien timestring
     return (
         <div>
-            <p>{timeString}</p>
+            <p className='time'>{timeString}</p>
+            <p className='time2'>{timeString}</p>
         </div>
     );
 }

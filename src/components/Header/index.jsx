@@ -57,6 +57,7 @@ export default function Header() {
           <NavLink to="todo" className={classes.link}>
             <Button color="inherit">Todo</Button>
           </NavLink>
+         
           <NavLink to="student" className={classes.link}>
             <Button color="inherit">Student</Button>
           </NavLink>
@@ -67,6 +68,9 @@ export default function Header() {
             <Button color="inherit">Máy tính</Button>
           </NavLink>
           <Button color="inherit" onClick={handleClickOpen}>Đăng ký</Button>
+          <NavLink to="login" className={classes.link}>
+            <Button color="inherit">Đăng nhập</Button>
+          </NavLink>
         </Toolbar>
       </AppBar>
       <Dialog disableBackdropClick disableEscapeKeyDown open={open} onClose={handleClose} aria-labelledby="form-dialog-title">

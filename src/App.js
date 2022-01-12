@@ -4,8 +4,11 @@ import AlertCodeGym from "./features/AlertCodeGym";
 import AllbumFeature from "./features/Allbum";
 import Calculator from "./features/Calculator";
 import Clock from "./features/Clock";
+import ColorBox from "./features/ClolorBox";
 import Counter from "./features/Counter";
 import Counter2Feature from "./features/Counter2";
+import HiddenInput from "./features/HiddenInput";
+// import Login from "./features/Login";
 import MagicColor from "./features/MagicColor";
 import Post from "./features/Post";
 import Student from "./features/Student";
@@ -33,6 +36,10 @@ function App() {
         <Route path="/counter2" component={Counter2Feature} />
         <Route path="/alert" component={AlertCodeGym} />
         <Route path="/alert" component={AlertCodeGym} />
+        <Route path="/colorbox" component={MagicColor} />
+        <Route path="/hidden" component={HiddenInput} />
+        <Route path="/typeinput" component={TypeInput} />
+        {/* <Route path="/login" component={Login} /> */}
       </Switch>
 
     </div>

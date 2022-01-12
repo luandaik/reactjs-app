@@ -18,7 +18,7 @@ function ColorBox(props) {
         const newColor = getRandomColor();
         console.log(newColor);
         setColor(newColor);
-        localStorage.setItem('color-box',newColor);
+        // localStorage.setItem('color-box',newColor);
     }
     return (
         <div className='color-box' style={{backgroundColor: color}} onClick={handleColorBox}>
