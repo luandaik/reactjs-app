@@ -11,6 +11,8 @@ import Typography from '@material-ui/core/Typography';
 import ComputerIcon from '@material-ui/icons/Computer';
 import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import Login from '../../features/Auth/components/Login';
+import LoginForm from '../../features/Auth/components/LoginForm/LoginForm';
 import Register from '../../features/Auth/components/Register';
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,24 +27,35 @@ const useStyles = makeStyles((theme) => ({
   link: {
     color: '#fff',
     textDecoration: 'none',
-    hover:true,
-    "&:hover": {
-        color: '#fff'
-      }
+    hover: true,
+    '&:hover': {
+      color: '#fff',
+    },
   },
 }));
 
 export default function Header() {
   const classes = useStyles();
+  const [hidden,setHidden] = useState(false);
   const [open, setOpen] = useState(false);
+  const [open2, setOpen2] = useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
   };
+  const handleClickOpen2 = () => {
+    setOpen2(true);
+  };
 
   const handleClose = () => {
     setOpen(false);
-
+  };
+  const handleClose2 = () => {
+    setOpen2(false);
+  };
+  const handleLogin = () => {
+    handleClose2();
+    setHidden(true);
   };
   return (
     <div className={classes.root}>
@@ -57,7 +70,7 @@ export default function Header() {
           <NavLink to="todo" className={classes.link}>
             <Button color="inherit">Todo</Button>
           </NavLink>
-         
+
           <NavLink to="student" className={classes.link}>
             <Button color="inherit">Student</Button>
           </NavLink>
@@ -67,19 +80,26 @@ export default function Header() {
           <NavLink to="calculator" className={classes.link}>
             <Button color="inherit">Máy tính</Button>
           </NavLink>
-          <Button color="inherit" onClick={handleClickOpen}>Đăng ký</Button>
-          <NavLink to="login" className={classes.link}>
-            <Button color="inherit">Đăng nhập</Button>
-          </NavLink>
+          <Button color="inherit" onClick={handleClickOpen}>
+            Đăng ký
+          </Button>
+          <Button color="inherit" onClick={handleClickOpen2}>
+            Đăng nhập
+          </Button>
         </Toolbar>
       </AppBar>
-      <Dialog disableBackdropClick disableEscapeKeyDown open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">Đăng ký</DialogTitle>
+      <Dialog
+        disableBackdropClick
+        disableEscapeKeyDown
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="form-dialog-title"
+      >
+        <DialogTitle id="form-dialog-title" hidden>Đăng ký</DialogTitle>
         <DialogContent>
           <DialogContentText>
-             <Register />
+            <Register />
           </DialogContentText>
-         
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
@@ -87,6 +107,26 @@ export default function Header() {
           </Button>
         </DialogActions>
       </Dialog>
+      <Dialog
+        disableBackdropClick
+        disableEscapeKeyDown
+        open={open2}
+        onClose={handleClose2}
+        aria-labelledby="form-dialog-title"
+      >
+        <DialogTitle id="form-dialog-title" hidden>Đăng nhập</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            <LoginForm onSubmit={handleLogin} />
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose2} color="primary">
+            Thoát
+          </Button>
+        </DialogActions>
+      </Dialog>
+     
     </div>
   );
 }

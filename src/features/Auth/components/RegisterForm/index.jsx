@@ -39,6 +39,7 @@ function RegisterForm(props) {
   });
 
   const handleSubmit = (values) => {
+    alert('Đăng ký thành công');
     if (onSubmit) {
       onSubmit(values);
     }
@@ -55,7 +56,7 @@ function RegisterForm(props) {
       backgroundColor: theme.palette.secondary.main,
     },
     form: {
-      width: '100%', // Fix IE 11 issue.
+      width: '100%', 
       marginTop: theme.spacing(3),
     },
     submit: {

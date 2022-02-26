@@ -1,15 +1,15 @@
 import { Redirect, Route, Switch } from "react-router-dom";
 import Header from "./components/Header";
+import AddStudent from "./features/AddStudent";
 import AlertCodeGym from "./features/AlertCodeGym";
 import AllbumFeature from "./features/Allbum";
+import Login from "./features/Auth/components/Login";
 import Calculator from "./features/Calculator";
 import Clock from "./features/Clock";
 import ColorBox from "./features/ClolorBox";
 import Counter from "./features/Counter";
 import Counter2Feature from "./features/Counter2";
 import HiddenInput from "./features/HiddenInput";
-import Login from "./features/Login";
-// import Login from "./features/Login";
 import MagicColor from "./features/MagicColor";
 import Post from "./features/Post";
 import Student from "./features/Student";
@@ -23,7 +23,7 @@ function App() {
       {/* <p> <NavLink to='posts' >Post</NavLink></p>
       <p> <NavLink to='todo' activeClassName="active-menu" >Todo</NavLink></p> */}
       <Switch>
-        <Redirect from="/home" to='/'  />
+        <Redirect from="/home" to='/home'  />
         {/* <Route path="/test" component={TestCodeGym} exact/> */}
         <Route path="/posts" component={Post} exact/>
         <Route path="/typeinput" component={TypeInput} exact/>
@@ -40,7 +40,10 @@ function App() {
         <Route path="/colorbox" component={MagicColor} />
         <Route path="/hidden" component={HiddenInput} />
         <Route path="/typeinput" component={TypeInput} />
-        <Route path="/login" component={Login} />
+        <Route path="/employee" component={Login} />
+        <Route path="/counter" component={Counter2Feature} />
+        <Route path="/addstudent" component={AddStudent} />
+
       </Switch>
 
     </div>
