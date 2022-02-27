@@ -5,10 +5,9 @@ import UserList from './Users/UserList';
 
 function AddStudent(props) {
     const [users,setUsers] = useState([]);
-    const handleAddUser = (e)=>{
-        
+    const handleAddUser = (users)=>{
         setUsers((initUsers)=>{
-            return[...initUsers,e]
+            return[...initUsers,users]
         })
         console.log(users);
     }

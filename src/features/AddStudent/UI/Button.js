@@ -4,7 +4,7 @@ import classes from './Button.module.css';
 
 Button.propTypes = {
     
-};
+}; 
 
 function Button(props) {
     return (
